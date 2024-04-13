@@ -23,28 +23,28 @@ const Person = mongoose.model('Person', personSchema)
 
 // if process.arg > 3 then save new person, else print all
 if (process.argv.length > 3) {
-    const newName = process.argv[3]
-    const newNumber = process.argv[4]
+  const newName = process.argv[3]
+  const newNumber = process.argv[4]
 
-    const person = new Person({
-        name: newName,
-        number: newNumber,
-    })
+  const person = new Person({
+    name: newName,
+    number: newNumber,
+  })
 
-    person.save().then(result => {
+  person.save().then(result => {
     console.log(`added ${newName} number ${newNumber} to phonebook`)
     //console.log("result", result)
     mongoose.connection.close()
-    })
+  })
 }
 else {
-    console.log("phonebook:")
-    Person.find({}).then(result => {
+  console.log('phonebook:')
+  Person.find({}).then(result => {
     result.forEach(person => {
-        console.log(person.name, person.number)
+      console.log(person.name, person.number)
     })
     mongoose.connection.close()
-    })
+  })
 }
 
 
